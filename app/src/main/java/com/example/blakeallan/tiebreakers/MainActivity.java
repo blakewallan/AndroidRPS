@@ -12,6 +12,10 @@ import android.widget.Button;
 
 public class MainActivity extends ActionBarActivity {
 
+    int wins = 0;
+    int losses = 0;
+    int ties = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -36,6 +40,7 @@ public class MainActivity extends ActionBarActivity {
                 showWinner(game.getWinner(cpuChoice, 1));
                 setCpuChoiceLabel(cpuChoice);
                 playerChoiceImage.setImageResource(R.drawable.rock);
+
 
             }
         });
@@ -82,29 +87,30 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    public void updateScores() {
+    public void showWinner(int result) {
 
         TextView winCount = (TextView) findViewById(R.id.winCount);
         TextView lossCount = (TextView) findViewById(R.id.lossCount);
         TextView tieCount = (TextView) findViewById(R.id.tieCount);
 
-        //winCount.setText("Wins: " + wins);
-        //lossCount.setText("Losses: " + losses);
-        //tieCount.setText("Ties: " + ties);
-    }
 
-    public void showWinner(int result) {
 
         TextView gameOutcome = (TextView) findViewById(R.id.gameOutcome);
 
         if (result == 1){
+            wins ++;
             gameOutcome.setText("YOU WON!");
+            winCount.setText("Wins: " + wins);
         }
         else if (result == 2){
+            losses ++;
             gameOutcome.setText("Computer Won");
+            lossCount.setText("Losses: " + losses);
         }
         else if(result == 3){
+            ties ++;
             gameOutcome.setText("It Was a Tie");
+            tieCount.setText("Ties: " + ties);
         }
     }
 
